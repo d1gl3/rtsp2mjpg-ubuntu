@@ -1,6 +1,7 @@
-FROM alpine:3.8
-RUN apk add curl bash ffmpeg && \
-    rm -rf /var/cache/apk/*
+FROM ubuntu:20.04
+RUN add-apt-repository -y ppa:savoury1/ffmpeg4 \
+    apt update && apt install -y ffmpeg \
+    rm -rf /var/lib/apt/lists/*
 COPY stream.sh /usr/bin/stream.sh
 RUN chmod +x /usr/bin/stream.sh
 COPY ffserver.conf /etc/ffserver.conf
